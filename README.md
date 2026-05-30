@@ -1,2 +1,2 @@
-# Nepal-s-problems
+# Nepalsproblem
 Website for Nepali citizens to report problems
