@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>नागरिक आवाज - Nepal Citizen Problems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,148 +14,436 @@
         
         body {
             font-family: 'Noto Sans', Arial, sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         
+        /* Beautiful Header */
         header {
-            background-color: #DC143C;
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 60px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         header h1 {
-            font-size: 42px;
+            font-size: 52px;
+            font-weight: 900;
             margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            opacity: 0.95;
         }
         
         header p {
-            font-size: 20px;
+            font-size: 22px;
+            margin-top: 15px;
+            opacity: 0.9;
         }
         
+        /* Flag Icons */
+        .flag-icon {
+            font-size: 40px;
+            margin: 0 10px;
+        }
+        
+        /* Navigation */
         nav {
-            background-color: #003893;
-            padding: 15px;
+            background: linear-gradient(90deg, #003893 0%, #001f54 100%);
+            padding: 18px;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
         nav a {
             color: white;
             text-decoration: none;
-            padding: 12px 25px;
+            padding: 12px 28px;
             margin: 5px;
             display: inline-block;
-            border-radius: 5px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
         
         nav a:hover {
-            background-color: #DC143C;
+            background: #DC143C;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220,20,60,0.4);
         }
         
+        /* Main Container */
         main {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
         
-        .btn {
-            background-color: #DC143C;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
+        /* Beautiful Cards */
+        .card {
+            background: white;
+            padding: 35px;
+            margin: 25px 0;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .card h2 {
+            color: #003893;
+            font-size: 32px;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #DC143C;
+            padding-bottom: 10px;
             display: inline-block;
-            margin: 10px;
+        }
+        
+        .card p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .card ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .card li {
+            color: #333;
+            font-size: 17px;
+            margin: 10px 0;
+        }
+        
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 15px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(220,20,60,0.3);
         }
         
         .btn:hover {
-            background-color: #003893;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(220,20,60,0.4);
         }
         
-        .card {
-            background-color: white;
-            padding: 25px;
+        .btn-blue {
+            background: linear-gradient(135deg, #003893 0%, #001f54 100%);
+            box-shadow: 0 8px 20px rgba(0,56,147,0.3);
+        }
+        
+        .btn-blue:hover {
+            box-shadow: 0 12px 30px rgba(0,56,147,0.4);
+        }
+        
+        /* Statistics Boxes */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
             margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        footer {
-            background-color: #333;
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
+            padding: 30px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 15px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stat-box h3 {
+            font-size: 48px;
+            font-weight: 900;
+        }
+        
+        .stat-box p {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        /* How It Works Section */
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .step {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 15px;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .step h4 {
+            color: #003893;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        /* Contact Section */
+        .contact-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .contact-box h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-box p {
+            color: white;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        
+        .contact-box a {
+            color: #FFD700;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 20px;
             text-align: center;
             margin-top: 50px;
         }
         
-        .form-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
+        footer p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        footer .love {
+            color: #DC143C;
+            font-size: 24px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+            header h2 {
+                font-size: 22px;
+            }
+            .card {
+                padding: 25px;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Beautiful Header -->
     <header>
-        <h1>🇳🇵 नागरिक आवाज</h1>
+        <h1><span class="flag-icon">🇳🇵</span> नागरिक आवाज <span class="flag-icon">🇳🇵</span></h1>
         <h2>Citizen Voice - Nepal</h2>
         <p>सबै नेपालीहरूको आवाज एकसाथ | Together for Nepal</p>
     </header>
     
+    <!-- Navigation -->
     <nav>
-        <a href="#home">गृहपृष्ठ | Home</a>
-        <a href="#report">समस्या रिपोर्ट गर्नुहोस्</a>
-        <a href="#view">हेर्नुहोस् | View All</a>
-        <a href="#about">हाम्रो बारे | About</a>
+        <a href="#home">🏠 गृहपृष्ठ</a>
+        <a href="#how-it-works">❓ कसरी</a>
+        <a href="#report">📝 रिपोर्ट</a>
+        <a href="#view">🗺️ हेर्नुहोस्</a>
+        <a href="#about">ℹ️ बारे</a>
     </nav>
     
+    <!-- Main Content -->
     <main>
+        <!-- Welcome Section -->
         <section id="home" class="card">
             <h2>🏠 स्वागत छ | Welcome</h2>
-            <p>यस वेबसाइटमा नेपाली नागरिकहरूले आफ्नो समस्या रिपोर्ट गर्न सक्नुहुन्छ।</p>
-            <p>Through this website, Nepali citizens can report their problems.</p>
+            <p>नमस्ते! यस वेबसाइटमा <strong>नेपाली नागरिकहरूले</strong> आफ्नो समस्या रिपोर्ट गर्न सक्नुहुन्छ।</p>
+            <p>Hello! Through this website, <strong>Nepali citizens</strong> can report their problems easily.</p>
             <br>
-            <p><strong>यो वेबसाइट नि:शुल्क छ | This website is FREE</strong></p>
+            <p style="font-size: 22px; color: #DC143C;"><strong>यो वेबसाइट नि:शुल्क छ | This website is 100% FREE</strong></p>
+            <br>
+            <a href="#report" class="btn">📝 अहिले रिपोर्ट गर्नुहोस्</a>
         </section>
         
-        <section id="report" class="form-container">
+        <!-- How It Works -->
+        <section id="how-it-works" class="card">
+            <h2>❓ कसरी काम गर्छ | How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>रिपोर्ट गर्नुहोस्</h4>
+                    <p>आफ्नो समस्या लेख्नुहोस्</p>
+                    <p>Report your problem</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>फोटो अपलोड</h4>
+                    <p>समस्याको फोटो राख्नुहोस्</p>
+                    <p>Upload a photo</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>पठाउनुहोस्</h4>
+                    <p>हाम्रो टिमले हेर्नेछ</p>
+                    <p>Our team will check</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Report Problem Section -->
+        <section id="report" class="card">
             <h2>📝 समस्या रिपोर्ट गर्नुहोस् | Report a Problem</h2>
-            <p>तलको बटन क्लिक गर्नुहोस् र फारम भर्नुहोस्:</p>
+            <p>तलको बटन क्लिक गर्नुहोस् र आफ्नो समस्या लेख्नुहोस्। फोटो पनि राख्न सक्नुहुन्छ।</p>
+            <p>Click the button below and write your problem. You can also upload photos.</p>
             <br>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjnog0fIiuLEAiDHMkfbgGueEV9H-Bfda4JXyfNpfkimgG6g/viewform" target="_blank" class="btn" style="padding: 25px 50px; font-size: 22px;">
-                📝 Click Here to Report Your Problem
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjnog0fIiuLEAiDHMkfbgGueEV9H-Bfda4JXyfNpfkimgG6g/viewform" target="_blank" class="btn">
+                📝 Click Here to Report Problem
             </a>
         </section>
         
-        <section id="view" class="form-container">
+        <!-- View Problems Section -->
+        <section id="view" class="card">
             <h2>🗺️ हालसम्मका समस्याहरू | View All Problems</h2>
-            <p>सबै रिपोर्ट गरिएका समस्याहरू हेर्नुहोस्:</p>
+            <p>सबै नागरिकहरूले रिपोर्ट गरेका समस्याहरू हेर्नुहोस्।</p>
+            <p>View all problems reported by citizens.</p>
             <br>
-            <a href="https://docs.google.com/spreadsheets/d/1FDeIo6UriYrXWNfBR3IlbsCGKGEgYL2XHCg_cfk8oMM/edit" target="_blank" class="btn">
-                📊 सबै समस्याहरू हेर्नुहोस् | View All Problems
+            <a href="https://docs.google.com/spreadsheets/d/e/1FDeIo6UriYrXWNfBR3IlbsCGKGEgYL2XHCg_cfk8oMM/pubhtml" target="_blank" class="btn btn-blue">
+                📊 View All Problems Now
             </a>
         </section>
         
+        <!-- Statistics -->
         <section class="card">
             <h2>📈 तथ्याङ्क | Statistics</h2>
-            <p>जम्मा रिपोर्ट गरिएका समस्याहरू: <strong>View in spreadsheet above</strong></p>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>0</h3>
+                    <p>कुल रिपोर्ट</p>
+                    <p>Total Reports</p>
+                </div>
+                <div class="stat-box">
+                    <h3>0</h3>
+                    <p>हल भएका</p>
+                    <p>Fixed</p>
+                </div>
+                <div class="stat-box">
+                    <h3>0</h3>
+                    <p>भइरहेका</p>
+                    <p>In Progress</p>
+                </div>
+            </div>
         </section>
         
+        <!-- About Section -->
         <section id="about" class="card">
             <h2>ℹ️ हाम्रो बारे | About Us</h2>
-            <p>यो वेबसाइट नेपाली नागरिकहरूलाई सहयोग गर्न बनाइएको हो।</p>
-            <p>This website is made to help Nepali citizens report their problems.</p>
+            <p>यो वेबसाइट <strong>नेपाली नागरिकहरूलाई सहयोग</strong> गर्न बनाइएको हो।</p>
+            <p>This website is made to help <strong>Nepali citizens</strong>.</p>
             <br>
-            <p><strong>Contact:</strong> siddarthapc2082@gmail.com</p>
+            <p>हाम्रो उद्देश्य:</p>
+            <ul>
+                <li>✓ नागरिकहरूको आवाज सुनाउनु</li>
+                <li>✓ समस्या छिट्टी समाधान गर्नु</li>
+                <li>✓ पारदर्शिता ल्याउनु</li>
+                <li>✓ सरकार र जनताबीच जोड्नु</li>
+            </ul>
+            <br>
+            <p>Our Mission:</p>
+            <ul>
+                <li>✓ Listen to citizen voices</li>
+                <li>✓ Solve problems quickly</li>
+                <li>✓ Bring transparency</li>
+                <li>✓ Connect government and people</li>
+            </ul>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="contact-box">
+            <h3>📧 सम्पर्क | Contact</h3>
+            <p>कुनै प्रश्न भए? हामीलाई इमेल गर्नुहोस्!</p>
+            <p>Questions? Email us!</p>
+            <br>
+            <a href="mailto:siddarthapc2082@gmail.com">✉ siddarthapc2082@gmail.com</a>
         </section>
     </main>
     
+    <!-- Footer -->
     <footer>
-        <p>© 2024 नागरिक आवाज | Citizen Voice Nepal</p>
-        <p>🏏 Made with ❤️ for Nepal</p>
+        <p>© 2024 <span class="flag-icon">🇳🇵</span> नागरिक आवाज | Citizen Voice Nepal</p>
+        <p class="love">🏏 Made with ❤️ for Nepal</p>
+        <p>Free Website for Nepali People</p>
     </footer>
 </body>
 </html>
